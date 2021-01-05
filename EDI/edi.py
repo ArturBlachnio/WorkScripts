@@ -10,8 +10,14 @@ with open('reconfig.txt', 'r') as file:
 print(outlook_folder_name)
 
 outlook = win32com.client.Dispatch("Outlook.Application").GetNamespace("MAPI")
-inbox = outlook.GetDefaultFolder(6).Folders.Item(outlook_folder_name) # ===== Change folder name here. It must be subfolder of Inbox ====
+inbox = outlook.GetDefaultFolder(6).Folders.Item(outlook_folder_name)
 messages = inbox.Items
+
+# for m in messages:
+#     print(m.subject)
+#     print(m.CreationTime)
+#     print(m.body)
+#     print('='*80)
 
 print('\nThere are {} emails in your mailbox\{}\n'.format(len(messages), outlook_folder_name))
 
@@ -36,7 +42,7 @@ for i, message in enumerate(messages):
                 break
                 
     except:
-        print('Error: {}'.format(message.subject))
+        print('Mail was not read properly: {}'.format(message.subject))
 
 df = pd.DataFrame({'error':errors, 'mail':mails, 'receivedate':creation_dates})
 
