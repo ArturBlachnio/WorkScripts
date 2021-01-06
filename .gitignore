@@ -3,6 +3,7 @@
 __fastloader__/
 file*
 *xlsx
+instalation_package/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
